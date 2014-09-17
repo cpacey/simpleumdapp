@@ -59,13 +59,16 @@ gulp.task('publish-s3', function() {
 
 gulp.task('update-github', function(cb) {
 	var githubUrl;
+	console.log( 'TPR: ' + process.env.TRAVIS_PULL_REQUEST );
 	if (process.env.TRAVIS_PULL_REQUEST === 'false') {
+		console.log( 'PR' );
 		githubUrl = 'https://api.github.com/repos/'
 				+ process.env.TRAVIS_REPO_SLUG
 				+ '/commits/'
 				+ process.env.COMMIT_SHA
 				+ '/comments';
 	} else {
+		console.log( 'COMMIT' );
 		githubUrl = 'https://api.github.com/repos/'
 				+ process.env.TRAVIS_REPO_SLUG
 				+ '/issues/'
